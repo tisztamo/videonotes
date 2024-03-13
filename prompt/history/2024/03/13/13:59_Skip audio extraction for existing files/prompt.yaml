@@ -1,0 +1,5 @@
+task: prompt/task/feature/implement.md
+attention:
+  - video_processing.py
+  - main.py
+requirements: Only skip downloading, but not audio extraction when the remote file exists.
