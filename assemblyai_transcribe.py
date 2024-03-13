@@ -1,22 +1,28 @@
 import requests
 import os
 
-# Use the environment variable for the AssemblyAI API key
-assemblyai_api_key = os.getenv('ASSEMBLYAI_API_KEY')
+api_key = os.environ.get('ASSEMBLYAI_API_KEY')
+upload_endpoint = 'https://api.assemblyai.com/v2/upload'
+transcript_endpoint = 'https://api.assemblyai.com/v2/transcript'
 
-def transcribe_video(video_file_path):
-    headers = {'authorization': assemblyai_api_key}
-    response = requests.post('https://api.assemblyai.com/v2/upload', headers=headers, files={'file': open(video_file_path, 'rb')})
-    print(response)
-    audio_url = response.json()['upload_url']
-    json = {"audio_url": audio_url}
-    transcript_response = requests.post('https://api.assemblyai.com/v2/transcript', json=json, headers=headers)
+def transcribe_audio(audio_path):
+    def read_file(audio_path, chunk_size=5242880):
+        with open(audio_path, 'rb') as _file:
+            while True:
+                data = _file.read(chunk_size)
+                if not data:
+                    break
+                yield data
+    headers = {'authorization': api_key}
+    upload_response = requests.post(upload_endpoint, headers=headers, data=read_file(audio_path))
+    audio_url = upload_response.json()['upload_url']
+    transcript_request = {'audio_url': audio_url}
+    transcript_response = requests.post(transcript_endpoint, json=transcript_request, headers=headers)
     transcript_id = transcript_response.json()['id']
-    print('Transcription ID:', transcript_id)
     return transcript_id
 
 def check_transcription_status(transcript_id):
-    headers = {'authorization': assemblyai_api_key}
-    endpoint = f'https://api.assemblyai.com/v2/transcript/{transcript_id}'
-    result = requests.get(endpoint, headers=headers)
-    return result.json()
+    headers = {'authorization': api_key}
+    endpoint = f"https://api.assemblyai.com/v2/transcript/{transcript_id}"
+    response = requests.get(endpoint, headers=headers)
+    return response.json()

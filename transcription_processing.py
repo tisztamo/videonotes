@@ -1,10 +1,10 @@
 import os
-from assemblyai_transcribe import transcribe_video, check_transcription_status
+from assemblyai_transcribe import transcribe_audio, check_transcription_status
 import time
 
 def process_transcriptions(videos):
-    for video, video_path in videos:
-        transcript_id = transcribe_video(video_path)
+    for video, audio_path in videos:
+        transcript_id = transcribe_audio(audio_path)
         print(f"Transcription initiated for {video['name']}. Transcript ID: {transcript_id}")
         
         while True:
@@ -19,7 +19,7 @@ def process_transcriptions(videos):
             else:
                 print(f"Transcription in progress for {video['name']}...")
                 time.sleep(10)
-
+                
 def write_transcription_to_file(video, transcript):
     os.makedirs('transcriptions', exist_ok=True)
     filename = f"transcriptions/{os.path.splitext(video['name'])[0]}.txt"

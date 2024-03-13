@@ -1,0 +1,9 @@
+task: prompt/task/feature/implement.md
+attention:
+  - main.py
+  - transcription_processing.py
+  - video_processing.py
+requirements: >-
+  Before transcribing, separate the audio from the video file and only upload
+  the audio file. Be sure that after the mods main.py remains clean, clear and
+  its structure shows the flow of data.
