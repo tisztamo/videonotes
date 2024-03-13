@@ -1,0 +1,6 @@
+task: prompt/task/feature/implement.md
+attention:
+  - video_processing.py
+  - main.py
+  - openai_transcribe.py
+requirements: Extract audio to a compressed file, mp3 or similar.

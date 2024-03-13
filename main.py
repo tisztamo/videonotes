@@ -8,13 +8,13 @@ def main():
     folder_id = '1ph59F7sO3liciGwzevdmh-06yB0ThcAe'
 
     # Download new videos
-    video_paths = []
+    videos = []
     for video, video_path in download_videos(google_drive_service, folder_id):
         audio_path = extract_audio(video_path)
-        video_paths.append((video, audio_path))
+        videos.append((video, video_path, audio_path))
 
     # Process transcriptions for downloaded videos
-    process_transcriptions(video_paths)
+    transcription_filenames = process_transcriptions(videos)
 
 if __name__ == '__main__':
     main()

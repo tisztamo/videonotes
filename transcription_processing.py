@@ -2,10 +2,14 @@ import os
 from openai_transcribe import transcribe_audio, check_transcription_status
 
 def process_transcriptions(videos):
+    transcription_filenames = []
     for video, audio_path in videos:
         transcript = transcribe_audio(audio_path)
         print(f"Transcription completed for {video['name']}")
-        write_transcription_to_file(video, transcript.text)
+        transcription_filename = write_transcription_to_file(video, transcript.text)
+        transcription_filenames.append(transcription_filename)
+    return transcription_filenames
+        
                 
 def write_transcription_to_file(video, transcript):
     os.makedirs('transcriptions', exist_ok=True)
@@ -13,3 +17,4 @@ def write_transcription_to_file(video, transcript):
     with open(filename, 'w') as f:
         f.write(transcript)
     print(f"Transcription written to {filename}")
+    return filename
