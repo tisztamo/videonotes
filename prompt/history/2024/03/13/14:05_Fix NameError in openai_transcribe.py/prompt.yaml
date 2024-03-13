@@ -1,0 +1,18 @@
+task: prompt/task/feature/implement.md
+attention:
+  - video_processing.py
+  - main.py
+  - openai_transcribe.py
+requirements: |-
+  Traceback (most recent call last):
+    File "/Users/ko/projects-new/videonotes/main.py", line 20, in <module>
+      main()
+    File "/Users/ko/projects-new/videonotes/main.py", line 17, in main
+      process_transcriptions(video_paths)
+    File "/Users/ko/projects-new/videonotes/transcription_processing.py", line 6, in process_transcriptions
+      transcript = transcribe_audio(audio_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    File "/Users/ko/projects-new/videonotes/openai_transcribe.py", line 9, in transcribe_audio
+      transcript = client.audio.transcribe("whisper-1", audio_file)
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  AttributeError: 'Audio' object has no attribute 'transcribe'

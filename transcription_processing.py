@@ -5,7 +5,7 @@ def process_transcriptions(videos):
     for video, audio_path in videos:
         transcript = transcribe_audio(audio_path)
         print(f"Transcription completed for {video['name']}")
-        write_transcription_to_file(video, transcript['text'])
+        write_transcription_to_file(video, transcript.text)
                 
 def write_transcription_to_file(video, transcript):
     os.makedirs('transcriptions', exist_ok=True)
