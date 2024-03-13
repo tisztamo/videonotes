@@ -13,7 +13,7 @@ def process_transcriptions(videos):
                 print(f"Transcription completed for {video['name']}")
                 write_transcription_to_file(video, status_response['text'])
                 break
-            elif status_response['status'] == 'failed':
+            elif status_response['status'] == 'failed' or status_response['status'] == 'error':
                 print(f"Transcription failed for {video['name']}")
                 break
             else:

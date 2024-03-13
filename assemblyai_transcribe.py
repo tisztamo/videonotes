@@ -7,6 +7,7 @@ assemblyai_api_key = os.getenv('ASSEMBLYAI_API_KEY')
 def transcribe_video(video_file_path):
     headers = {'authorization': assemblyai_api_key}
     response = requests.post('https://api.assemblyai.com/v2/upload', headers=headers, files={'file': open(video_file_path, 'rb')})
+    print(response)
     audio_url = response.json()['upload_url']
     json = {"audio_url": audio_url}
     transcript_response = requests.post('https://api.assemblyai.com/v2/transcript', json=json, headers=headers)
