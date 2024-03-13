@@ -3,3 +3,8 @@ downloads/
 token.pickle
 credentials.json
 
+
+/prompt.yaml
+/prompt.md
+/change.sh
+node_modules
