@@ -48,3 +48,7 @@ def download_video(service, file_id, file_name):
         status, done = downloader.next_chunk()
         print("Download %d%%." % int(status.progress() * 100))
     fh.close()
+
+def get_video_size(service, file_id):
+    file_metadata = service.files().get(fileId=file_id, fields='size').execute()
+    return int(file_metadata['size'])

@@ -1,0 +1,7 @@
+task: prompt/task/feature/implement.md
+attention:
+  - video_processing.py
+  - main.py
+requirements: >-
+  When downloading a video, check if the file already exists and has the same
+  size, and skip.
