@@ -1,0 +1,7 @@
+task: prompt/task/feature/implement.md
+attention:
+  - transcription_processing.py
+  - assemblyai_transcribe.py
+requirements: >-
+  Instead of assemblyai, use openai api to transcribe. create a new file for it.
+  OPEANAI_API_KEY env var is set. 
