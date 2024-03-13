@@ -1,0 +1,11 @@
+task: prompt/task/feature/implement.md
+attention:
+  - main.py
+requirements: >-
+  - Factor out the video processing to a separate file
+
+  - Create a new file for transcription processing. Create a function there to
+  write the transcription to a file in transcriptions/ (create the dir if
+  needed)
+
+  - import and call the new function
