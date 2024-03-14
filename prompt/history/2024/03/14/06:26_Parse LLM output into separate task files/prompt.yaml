@@ -1,0 +1,7 @@
+task: prompt/task/feature/implement.md
+attention:
+  - main.py
+  - videonotes/task_extraction.py
+requirements: >-
+  Parse the llm output and create separate files for every task. in main,
+  collect all the created task filenames.

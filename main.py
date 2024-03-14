@@ -17,12 +17,16 @@ def main():
 
     # Process transcriptions for downloaded videos
     transcription_filenames = process_transcriptions(videos)
-
     summary_filenames = list(map(summarize_transcription, transcription_filenames))
     print(summary_filenames)
 
-    task_filenames = list(map(extract_tasks_from_summary, summary_filenames))
-    print(task_filenames)
+    all_task_filenames = []
+    for summary_filename in summary_filenames:
+        task_filenames = extract_tasks_from_summary(summary_filename)
+        all_task_filenames.extend(task_filenames)
+
+    print(f"Created {len(all_task_filenames)} task files:")
+    print('\n'.join(all_task_filenames))
 
 if __name__ == '__main__':
     main()

@@ -11,7 +11,6 @@ Output the tasks as a numbered list in the following format:
 1. First task
 2. Second task
 ...
-
 Summary:
 {summary}
 """
@@ -20,10 +19,14 @@ Summary:
     tasks = tasks_str.split('\n')
     
     os.makedirs('./tasks/', exist_ok=True)
-    basename = os.path.basename(summary_filename)
-    tasks_filename = f"./tasks/{basename}.tasks"
-    with open(tasks_filename, 'w') as f:
-        f.write('\n'.join(tasks))
+    basename = os.path.splitext(os.path.basename(summary_filename))[0]
     
-    print(f"Extracted {len(tasks)} tasks to {tasks_filename}")
-    return tasks_filename
+    task_filenames = []
+    for i, task in enumerate(tasks, start=1):
+        task_filename = f"./tasks/{basename}_task{i}.txt"
+        with open(task_filename, 'w') as f:
+            f.write(task.strip())
+        task_filenames.append(task_filename)
+    
+    print(f"Extracted {len(tasks)} tasks to ./tasks/")
+    return task_filenames
