@@ -1,6 +1,7 @@
-from google_drive import authenticate_google_drive
-from video_processing import download_videos, extract_audio
-from transcription_processing import process_transcriptions
+from videonotes.google_drive import authenticate_google_drive
+from videonotes.video_processing import download_videos, extract_audio
+from videonotes.transcription_processing import process_transcriptions
+from videonotes.summary_processing import summarize_transcription
 
 def main():
     # Google Drive setup
@@ -15,6 +16,8 @@ def main():
 
     # Process transcriptions for downloaded videos
     transcription_filenames = process_transcriptions(videos)
+    summary_filenames = list(map(summarize_transcription, transcription_filenames))
+    print(summary_filenames)
 
 if __name__ == '__main__':
     main()

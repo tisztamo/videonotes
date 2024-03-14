@@ -1,0 +1,10 @@
+task: prompt/task/feature/implement.md
+attention:
+  - main.py
+  - transcription_processing.py
+  - openai_transcribe.py
+requirements: >-
+  After transcriptions are ready, clean and sumamrize them to ./summaries/
+  (create the dir in python before writing to it) using an openai api call with
+  3.5 model. Use a prompt that ensures the summaries contain all information
+  from the transcipt.

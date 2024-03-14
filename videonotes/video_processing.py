@@ -1,6 +1,6 @@
 import os
 
-from google_drive import authenticate_google_drive, find_new_videos, download_video, get_video_size
+from videonotes.google_drive import authenticate_google_drive, find_new_videos, download_video, get_video_size
 
 def download_videos(google_drive_service, folder_id):
     new_videos = find_new_videos(google_drive_service, folder_id)
