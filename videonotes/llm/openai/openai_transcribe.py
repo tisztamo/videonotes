@@ -10,7 +10,3 @@ def transcribe_audio(audio_path):
               file=audio_file,
         )
     return transcript
-
-def check_transcription_status(transcript):
-    # OpenAI transcription is synchronous, so no need to check status
-    return {'status': 'completed', 'text': transcript.text}

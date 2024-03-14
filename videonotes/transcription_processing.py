@@ -1,6 +1,5 @@
 import os
 from .llm.openai.openai_transcribe import transcribe_audio
-from .summary_processing import summarize_transcription
 
 def process_transcriptions(videos):
     transcription_filenames = []
