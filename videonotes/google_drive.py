@@ -4,6 +4,7 @@ from google.auth.transport.requests import Request
 from googleapiclient.http import MediaIoBaseDownload
 import pickle
 import os.path
+from videonotes.database import file_exists, insert_file
 
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
 
@@ -38,19 +39,30 @@ def find_videos(service, query):
     return items
 
 def download_video(service, file_id, file_name):
-    request = service.files().get_media(fileId=file_id)
-    fh = open(file_name, 'wb')
-    downloader = MediaIoBaseDownload(fh, request)
-    done = False
-    while not done:
-        status, done = downloader.next_chunk()
-        print("Download %d%%." % int(status.progress() * 100))
-    fh.close()
+    print(f"fn {file_name} {file_id}")
 
+    if not file_exists(file_id):
+        print(42)
+        request = service.files().get_media(fileId=file_id)
+        fh = open(file_name, 'wb')
+        downloader = MediaIoBaseDownload(fh, request)
+        done = False
+        while not done:
+            status, done = downloader.next_chunk()
+            print("Download %d%%." % int(status.progress() * 100))
+        fh.close()
+        
+        file_metadata = service.files().get(fileId=file_id, fields='name,createdTime,modifiedTime,size').execute()
+        insert_file(file_id, file_metadata['name'], file_metadata['createdTime'], 
+                    file_metadata['modifiedTime'], int(file_metadata['size']))
+    else:
+        print(f"File {file_name} already downloaded, skipping...")
+        
 def get_video_size(service, file_id):
     file_metadata = service.files().get(fileId=file_id, fields='size').execute()
     return int(file_metadata['size'])
 
 def find_new_videos(service, folder_id):
     query = f"('{folder_id}' in parents and (mimeType='video/mp4' or mimeType='video/quicktime' or mimeType='video/x-msvideo' or mimeType='video/x-ms-wmv') and trashed=false)"
-    return find_videos(service, query)
+    all_videos = find_videos(service, query)
+    return filter(lambda video: not file_exists(video["id"]), all_videos)

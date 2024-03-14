@@ -1,0 +1,9 @@
+task: prompt/task/feature/implement.md
+attention:
+  - videonotes/google_drive.py
+  - main.py
+requirements: >-
+  Maintain an sqlite database named ./googledrive.db, storing the name,
+  creation/mod date and size of downloaded files. Only download new files and
+  update the db after successful download. When needed, create the db from
+  python at program start (not from the shell script).
