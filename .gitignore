@@ -1,6 +1,8 @@
 __pycache__/
 downloads/
 transcriptions/
+summaries/
+tasks/
 token.pickle
 credentials.json
 

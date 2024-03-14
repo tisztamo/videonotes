@@ -1,0 +1,11 @@
+task: prompt/task/feature/implement.md
+attention:
+  - main.py
+  - videonotes/summary_processing.py
+  - videonotes/llm/openai/openai_chat.py
+requirements: >-
+  When summaries are ready, extract tasks from them using an llm.
+
+  There may be multiple tasks. Ask the llm to generate a list of tasks in a
+  simple to parse form. Write the tasks to files in "tasks/", each having its
+  own file. Create the dir from python before writing to it.
