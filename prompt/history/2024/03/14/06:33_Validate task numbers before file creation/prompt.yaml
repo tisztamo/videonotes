@@ -1,0 +1,8 @@
+task: prompt/task/feature/implement.md
+attention:
+  - main.py
+  - videonotes/task_extraction.py
+requirements: >-
+  Before writing the task to the file, cur the number from the beginning (beware
+  the dot) and check if it equals with i. Print a red error message if not and
+  skip the item.
