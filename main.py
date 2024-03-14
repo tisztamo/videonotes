@@ -1,6 +1,6 @@
 from videonotes.google_drive import authenticate_google_drive
 from videonotes.video_processing import download_videos, extract_audio
-from videonotes.transcription_processing import process_transcriptions
+from videonotes.transcription_processing import process_transcriptions  
 from videonotes.summary_processing import summarize_transcription
 from videonotes.task_extraction import extract_tasks_from_summary
 
@@ -17,13 +17,12 @@ def main():
 
     # Process transcriptions for downloaded videos
     transcription_filenames = process_transcriptions(videos)
+
     summary_filenames = list(map(summarize_transcription, transcription_filenames))
-
-    # Extract tasks from summaries and write to files
-    for summary_filename in summary_filenames:
-        extract_tasks_from_summary(summary_filename)
-
     print(summary_filenames)
+
+    task_filenames = list(map(extract_tasks_from_summary, summary_filenames))
+    print(task_filenames)
 
 if __name__ == '__main__':
     main()

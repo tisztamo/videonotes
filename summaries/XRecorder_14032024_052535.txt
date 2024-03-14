@@ -1,1 +1,1 @@
-Okay, this is a test video. The task is to cache the responses.
+Okay, so this is a test video, and there is a task to cache the element responses.

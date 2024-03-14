@@ -1,0 +1,6 @@
+task: prompt/task/feature/implement.md
+attention:
+  - main.py
+  - videonotes/summary_processing.py
+  - videonotes/llm/openai/openai_chat.py
+requirements: ''
