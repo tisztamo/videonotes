@@ -1,0 +1,4 @@
+task: prompt/task/feature/implement.md
+attention:
+  - videonotes/google_drive.py
+requirements: finding videos should exlcude deleted ones.

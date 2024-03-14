@@ -1,3 +1,14 @@
+#!/bin/sh
+set -e
+
+goal="Find videos excluding deleted ones on Google Drive"
+
+echo "Plan:"  
+echo "1. Add trashed=false to the query to exclude deleted videos"
+echo "2. Refactor find_new_videos to take a query parameter"
+echo "3. Update the query in the authenticate_google_drive function"
+
+cat > videonotes/google_drive.py << EOF
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow  
 from google.auth.transport.requests import Request
@@ -54,3 +65,6 @@ def get_video_size(service, file_id):
 def find_new_videos(service, folder_id):
     query = f"('{folder_id}' in parents and (mimeType='video/mp4' or mimeType='video/quicktime' or mimeType='video/x-msvideo' or mimeType='video/x-ms-wmv') and trashed=false)"
     return find_videos(service, query)
+EOF
+
+echo "\033[32mDone: $goal\033[0m\n"
