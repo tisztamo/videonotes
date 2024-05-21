@@ -1,0 +1,6 @@
+task: prompt/task/feature/implement.md
+attention:
+  - videonotes/llm/openai/openai_chat.py
+requirements: >-
+  Create an sqlite-based function memoizer in videonotes/tools/memoizer.py  and
+  use it in openai chat. Open or create a db file named after the chat model.

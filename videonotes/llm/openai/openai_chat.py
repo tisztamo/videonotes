@@ -1,7 +1,9 @@
 from openai import OpenAI
+from videonotes.tools.memoizer import memoize
 
 client = OpenAI()
 
+@memoize("gpt-4o")
 def chat_with_openai(prompt):
     message = {
         'role': 'user',
