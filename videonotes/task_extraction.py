@@ -7,10 +7,12 @@ def extract_tasks_from_summary(summary_filename):
     with open(summary_filename, 'r') as f:
         summary = f.read()
 
-    prompt = f"""Extract all tasks from the following summary.
+    prompt = f"""Extract all tasks from the following voice command summary.
+Only list tasks that are specifically mentioned as a task or something we need to do.
+Do not list subtasks and anything that is not mentioned as task or todo.
 Output the tasks as a numbered list in the following format:
-1. First task
-2. Second task
+1. First task with all its details. Full task description. No newline.
+2. Second task with all its details. Full task description. No newline.
 ...
 Summary:
 {summary}

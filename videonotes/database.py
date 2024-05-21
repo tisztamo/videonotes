@@ -12,16 +12,15 @@ def create_database():
         conn.commit()
         conn.close()
 
-def file_exists(file_id):
+def file_processed(file_id):
     conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
     c.execute("SELECT COUNT(*) FROM files WHERE id = ?", (file_id,))
     count = c.fetchone()[0]
     conn.close()
-    print(f"count {count}")
     return count > 0
 
-def insert_file(file_id, file_name, created, modified, size):
+def mark_file_processed(file_id, file_name, created, modified, size):
     conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
     c.execute("INSERT OR REPLACE INTO files VALUES (?, ?, ?, ?, ?)", 

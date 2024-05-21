@@ -4,8 +4,8 @@ from .llm.openai.openai_transcribe import transcribe_audio
 def process_transcriptions(videos):
     transcription_filenames = []
     for video, video_path, audio_path in videos:
+        print(f"Transcription starting for {video['name']}")
         transcript = transcribe_audio(audio_path)
-        print(f"Transcription completed for {video['name']}")
         transcription_filename = write_transcription_to_file(video, transcript.text)
         transcription_filenames.append(transcription_filename)
     return transcription_filenames

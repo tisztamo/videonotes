@@ -6,7 +6,8 @@ def summarize_transcription(transcription_filename):
     with open(transcription_filename, 'r') as f:
         transcript = f.read()
     
-    summary = chat_with_openai(f"Clean this transcript, remove redundant information, simplify word use, but retain all information. Output the cleaned transcript in english.\n{transcript}")
+    summary = chat_with_openai(f"""Clean the following transcript, remove redundant information, simplify word use, but retain all information. Output the cleaned transcript in english.
+<transcript>{transcript}</transcript>""")
 
     os.makedirs('./summaries/', exist_ok=True)
     summary_filename = f"./summaries/{os.path.basename(transcription_filename)}"
