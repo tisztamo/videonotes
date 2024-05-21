@@ -11,8 +11,8 @@ def extract_tasks_from_summary(summary_filename):
 Only list tasks that are specifically mentioned as a task or something we need to do.
 Do not list subtasks and anything that is not mentioned as task or todo.
 Output the tasks as a numbered list in the following format:
-1. First task with all its details. Full task description. No newline.
-2. Second task with all its details. Full task description. No newline.
+1. [First task with all its details. Write the full task description in a single line but with every details we know. Start with a title sentence and continue with a fully detailed description.]
+2. [Second task description]
 ...
 Summary:
 {summary}
