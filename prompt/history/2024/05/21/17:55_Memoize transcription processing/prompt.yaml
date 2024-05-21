@@ -1,0 +1,6 @@
+task: prompt/task/feature/implement.md
+attention:
+  - videonotes/tools/memoizer.py
+  - videonotes/transcription_processing.py
+  - main.py
+requirements: Memoize transcription processing
